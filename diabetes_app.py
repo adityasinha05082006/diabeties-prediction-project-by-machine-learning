@@ -3,7 +3,7 @@ import numpy as np
 import pickle
 
 # Load model
-model = pickle.load(open("C:\Users\Aditya Singh\OneDrive\Desktop\Diabetic prediction\diabetes_model.pkl", 'rb'))
+model = pickle.load(open(r"C:\Users\Aditya Singh\OneDrive\Desktop\Diabetic prediction\diabetes_model.pkl", 'rb'))
 
 # Title
 st.title("Diabetes Prediction App")
