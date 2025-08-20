@@ -1,30 +1,27 @@
 import streamlit as st
 import numpy as np
-import joblib
-
-st.title("Diabetic Prediction App")
+import pickle
 
 # Load model
-model = joblib.load(r"C:\Users\Aditya Singh\Desktop\Diabetic prediction\diabetes_model.pkl")
+model = pickle.load(open("C:\Users\Aditya Singh\OneDrive\Desktop\Diabetic prediction\diabetes_model.pkl", 'rb'))
 
-# Input features
-preg = st.number_input("Pregnancies", min_value=0)
-glucose = st.number_input("Glucose", min_value=0)
-bp = st.number_input("BloodPressure", min_value=0)
-skin = st.number_input("SkinThickness", min_value=0)
-insulin = st.number_input("Insulin", min_value=0)
-bmi = st.number_input("BMI", min_value=0.0)
-dpf = st.number_input("DiabetesPedigreeFunction", min_value=0.0)
-age = st.number_input("Age", min_value=0)
+# Title
+st.title("Diabetes Prediction App")
 
-features = np.array([[preg, glucose, bp, skin, insulin, bmi, dpf, age]])
+# Input fields
+pregnancies = st.number_input("Pregnancies", 0, 20)
+glucose = st.number_input("Glucose", 0, 200)
+blood_pressure = st.number_input("Blood Pressure", 0, 140)
+skin_thickness = st.number_input("Skin Thickness", 0, 100)
+insulin = st.number_input("Insulin", 0, 900)
+bmi = st.number_input("BMI", 0.0, 70.0)
+dpf = st.number_input("Diabetes Pedigree Function", 0.0, 3.0)
+age = st.number_input("Age", 1, 120)
 
+# Predict button
 if st.button("Predict"):
-    prediction = model.predict(features)
-    if prediction[0] == 1:
-        st.error("The person is likely Diabetic.")
-    else:
-        st.success("The person is NOT Diabetic.")
-        
-        
-
+    input_data = np.array([[pregnancies, glucose, blood_pressure, skin_thickness,
+                            insulin, bmi, dpf, age]])
+    prediction = model.predict(input_data)
+    result = 'Diabetic' if prediction[0] == 1 else 'Non-Diabetic'
+    st.success(f"The person is {result}")
