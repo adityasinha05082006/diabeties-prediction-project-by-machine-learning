@@ -5,7 +5,7 @@ from sklearn.metrics import accuracy_score, classification_report
 import joblib
 
 # 1. Load Data
-df = pd.read_csv(r"C:\Users\Aditya Singh\Desktop\Diabetic prediction\diabetes.csv")
+df = pd.read_csv('diabetes.csv')
 
 # 2. Data Preprocessing
 X = df.drop("Outcome", axis=1)
