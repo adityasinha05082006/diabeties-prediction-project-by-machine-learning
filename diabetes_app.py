@@ -1,6 +1,10 @@
 import streamlit as st
 import numpy as np
 import joblib
+import warnings
+
+# Suppress sklearn warnings
+warnings.filterwarnings("ignore", category=UserWarning, module="sklearn")
 
 # Load model
 model = joblib.load('diabetes_model.pkl')

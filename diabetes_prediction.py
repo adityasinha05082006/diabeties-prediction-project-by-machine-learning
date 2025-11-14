@@ -3,6 +3,10 @@ from sklearn.model_selection import train_test_split
 from sklearn.ensemble import RandomForestClassifier
 from sklearn.metrics import accuracy_score, classification_report
 import joblib
+import warnings
+
+# Suppress warnings
+warnings.filterwarnings("ignore")
 
 # 1. Load Data
 df = pd.read_csv('diabetes.csv')
@@ -25,5 +29,6 @@ print("Classification Report:\n", classification_report(y_test, y_pred))
 
 # 6. Save Model
 joblib.dump(model, "diabetes_model.pkl")
+print("Model saved successfully!")
 
 
